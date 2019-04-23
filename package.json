@@ -2,9 +2,7 @@
   "name": "lib-jitsi-meet",
   "version": "1.0.0",
   "scripts": {
-    "run": "node main.js config.js"
+    "build": "node main.js"
   },
-  "dependencies": {
-    "js-util": "^2.0.10"
-  }
+  "dependencies": {}
 }
