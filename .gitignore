@@ -1,0 +1,8 @@
+# IDE specific files
+/.idea/
+*.iml
+*.log
+*.gz
+
+
+
