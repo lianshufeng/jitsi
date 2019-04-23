@@ -2,29 +2,11 @@ let fs = require('fs');
 
 
 /**
- * 例子配置
- * @type {{file: string, charset: string, skip: number, from: string, to: string, update: number}}
+ * 更新文本
+ * @param patch
+ * @returns {boolean}
  */
-let _patch = {
-    //文件名
-    "file": "/modules/RTC/RTCUtils.js",
-    //文件字符编码
-    "charset": "utf-8",
-    //跳过
-    "skip": 0,
-    //从开始的字符串
-    "from": "SS_DEFAULT_FRAME_RATE = ",
-    //结束的字符串
-    "to": ";",
-    //替换为
-    "update": 40
-};
-
-
-/**
- 修改文本
- */
-module.exports.write = function (patch) {
+module.exports.update = function (patch) {
     let content = readContent(patch);
     let fromAt = findStr(content, patch.from, patch.skip);
     let toAt = findStr(content, patch.to, fromAt + patch.from.length);
@@ -40,6 +22,20 @@ module.exports.write = function (patch) {
 
 
 /**
+ * 替换文本
+ * @param patch
+ * @returns {boolean}
+ */
+module.exports.replace = function (patch) {
+    let content = readContent(patch);
+    //更新后的文件
+    writeContent(patch, content.split(patch.source).join(patch.target));
+    return true;
+}
+
+
+
+/**
  * 读取文本
  * @param patch
  * @returns {null}
@@ -48,6 +44,19 @@ module.exports.read = function (patch) {
     let content = readContent(patch);
     let fromAt = findStr(content, patch.from, patch.skip);
     let toAt = findStr(content, patch.to, fromAt + patch.from.length);
+    return content.substring(fromAt + patch.from.length, toAt);
+}
+
+
+/**
+ * 替换文本
+ * @param patch
+ * @returns {string}
+ */
+module.exports.replaceAll = function (patch) {
+    let content = readContent(patch);
+    content.replace();
+
     return content.substring(fromAt + patch.from.length, toAt);
 }
 

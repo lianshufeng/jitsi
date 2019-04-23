@@ -1,5 +1,5 @@
 //载入工具类
-var fs = require('fs'), path = require('path');
+let fs = require('fs'), path = require('path');
 
 
 /**
@@ -7,7 +7,10 @@ var fs = require('fs'), path = require('path');
  * @param pathName
  * @param list
  */
-var joinScript = function (pathName, list) {
+let joinScript = function (pathName, list) {
+    if (!fs.existsSync(pathName)){
+        fs.mkdirSync(pathName);
+    }
     fs.readdirSync(pathName).forEach((fileName) => {
         list.push('./' + pathName + '/' + fileName);
     })
@@ -18,7 +21,7 @@ var joinScript = function (pathName, list) {
  * 找到所有的模型
  * @returns {any[]}
  */
-var loadModules = function () {
+let loadModules = function () {
     let list = new Array();
     joinScript('lib-jitsi-meet', list);
     joinScript('jitsi-meet', list);
@@ -38,7 +41,7 @@ var loadModules = function () {
  * 程序入口
  *
  */
-var main = function () {
+let main = function () {
     var modules = loadModules();
     console.log('------------->>>');
     //执行

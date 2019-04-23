@@ -5,14 +5,33 @@ let config = require('./config')
 
 /**
  * 执行补丁
+ * @param patch
+ * @returns {boolean|*}
+ */
+let executePatch = function (patch) {
+    return patch.execute();
+}
+/**
+ * 执行补丁
  * @returns {boolean}
  */
 let execute = function () {
     if (this.patch) {
-        return textFileUtil.write(this.patch);
+        try {
+            if (this.patch instanceof Array) {
+                this.patch.forEach((patch) => {
+                    executePatch(patch);
+                })
+            } else {
+                executePatch(this.patch);
+            }
+        } catch (e) {
+            console.error(e);
+            return false;
+        }
+        return true;
     }
     return false;
-
 }
 
 

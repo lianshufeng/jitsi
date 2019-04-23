@@ -7,6 +7,9 @@ module.exports = {
     },
 
     // 设置默认的帧率
-    default_frame_rate: 40
+    defaultFrameRate: 40,
+
+    //隐藏水印
+    hideWatermark:true
 
 }

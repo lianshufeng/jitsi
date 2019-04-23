@@ -5,6 +5,7 @@
  * lib-jitsi-meet/modules/RTC/RTCUtils.js
  */
 let baseScript = require('../BaseScript').newInstance();
+module.exports = baseScript;
 
 
 /**
@@ -13,19 +14,16 @@ let baseScript = require('../BaseScript').newInstance();
  */
 baseScript.name = __filename;
 
-
-/**
- * 补丁的配置
- * @type {{fileName: string, start: string, end: string, update: number}}
- */
-baseScript.patch = {
+let patch = {
     "file": baseScript.getConfig().path['lib-jitsi-meet'] + "/modules/RTC/RTCUtils.js",
     "charset": "utf-8",
     "skip": 0,
     "from": "SS_DEFAULT_FRAME_RATE = ",
     "to": ";",
-    "update": baseScript.getConfig().default_frame_rate
-};
+    "update": baseScript.getConfig().defaultFrameRate
+}
+
+baseScript.patch = require('../updater/UpdatePatch').newInstance(patch);
 
 
-module.exports = baseScript;
+
