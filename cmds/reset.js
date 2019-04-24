@@ -16,7 +16,10 @@ let runCmd = function (cmd, cwd) {
 
 let main = function () {
     runCmd('git reset --hard HEAD', config.path['jitsi-meet']);
+    runCmd('git pull', config.path['jitsi-meet']);
+
     runCmd('git reset --hard HEAD', config.path['lib-jitsi-meet']);
+    runCmd('git pull', config.path['lib-jitsi-meet']);
 }
 
 
