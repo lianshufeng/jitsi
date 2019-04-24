@@ -5,7 +5,7 @@
     "build": "node cmds/build.js",
     "package": "node cmds/package.js",
     "reset": "node cmds/reset.js",
-    "auto": "npm run reset &  npm run  build & npm run package"
+    "auto": "npm run reset &&  npm run  build && npm run package"
   },
   "dependencies": {
   }
