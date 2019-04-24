@@ -36,8 +36,20 @@ let patch2 = {
     'target': '',
 }
 
+let patch3 = {
+    //文件名
+    'file': baseScript.getConfig().path['jitsi-meet'] + '/react/features/base/i18n/i18next.js',
+    //文件字符编码
+    'charset': 'utf-8',
+    //从开始的字符串
+    'source': "COUNTRIES_RESOURCES,",
+    //结束的字符串
+    'target': '',
+}
 
-baseScript.patch = [require('../updater/ReplacePatch').newInstance(patch1), require('../updater/ReplacePatch').newInstance(patch2)];
+
+
+baseScript.patch = [require('../updater/ReplacePatch').newInstance(patch1), require('../updater/ReplacePatch').newInstance(patch2) , require('../updater/ReplacePatch').newInstance(patch3)];
 
 
 
