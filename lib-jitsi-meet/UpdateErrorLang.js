@@ -14,7 +14,7 @@ module.exports = baseScript;
  */
 baseScript.name = __filename;
 
-let patch = {
+let patch1 = {
     //文件名
     'file': baseScript.getConfig().path['jitsi-meet'] + '/react/features/base/i18n/i18next.js',
     //文件字符编码
@@ -25,7 +25,19 @@ let patch = {
     'target': '',
 }
 
-baseScript.patch = require('../updater/ReplacePatch').newInstance(patch);
+let patch2 = {
+    //文件名
+    'file': baseScript.getConfig().path['jitsi-meet'] + '/react/features/base/i18n/functions.js',
+    //文件字符编码
+    'charset': 'utf-8',
+    //从开始的字符串
+    'source': ", 'countries'",
+    //结束的字符串
+    'target': '',
+}
+
+
+baseScript.patch = [require('../updater/ReplacePatch').newInstance(patch1), require('../updater/ReplacePatch').newInstance(patch2)];
 
 
 
