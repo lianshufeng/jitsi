@@ -9,8 +9,13 @@ var exec = require('child_process').execSync;
  * @param cmd
  */
 let runCmd = function (cmd, cwd) {
-    let ret = exec(cmd, {"cwd": cwd});
-    console.log(cwd + ' -> ' + ret);
+    try {
+        let ret = exec(cmd, {"cwd": cwd});
+        console.log(cwd + ' -> ' + ret);
+    } catch (e) {
+        console.error(e);
+    }
+
 }
 
 
