@@ -14,6 +14,9 @@ module.exports = {
     defaultFrameRate: 40,
 
     //隐藏水印
-    hideWatermark: true
+    hideWatermark: true,
+
+    // 默认的服务端地址，app需要依赖此地址
+    defaultServerUrl: 'https://webrtc.dzurl.top'
 
 }
