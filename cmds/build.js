@@ -12,7 +12,10 @@ let joinScript = function (pathName, list) {
         fs.mkdirSync(pathName);
     }
     fs.readdirSync(pathName).forEach((fileName) => {
-        list.push(path.join('..', pathName, fileName));
+        let fileArr = fileName.split('.');
+        if (fileArr.length > 0 && fileArr[fileArr.length - 1] == 'js') {
+            list.push(path.join('..', pathName, fileName));
+        }
     })
 }
 
