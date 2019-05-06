@@ -28,7 +28,7 @@ let patch1 = {
 
 
 let source2 = "const maybeCreateAndAddDesktopTrack = function(desktopStream) {";
-let content2 = 'if(desktopStream){mediaStreamsMetaData.push({stream:desktopStream.stream,sourceId:desktopStream.sourceId,sourceType:desktopStream.sourceType,track:desktopStream.stream.getVideoTracks()[0],videoType:VideoType.DESKTOP})};';
+let content2 = 'if(desktopStream&&window.JitsiMeetScreenObtainer&&window.JitsiMeetScreenObtainer.needDesktopAudio){const audioTracks=desktopStream.stream.getAudioTracks();if(audioTracks.length){const audioStream=new MediaStream(audioTracks);mediaStreamsMetaData.push({stream:audioStream,track:audioStream.getAudioTracks()[0]})}};';
 let patch2 = {
     "file": baseScript.getConfig().path['lib-jitsi-meet'] + "/modules/RTC/RTCUtils.js",
     "charset": "utf-8",
